@@ -20,7 +20,7 @@ namespace Agl.Console
             var service = new PetOwnerService(client);
 
             var owners = service.GetPetOwner();
-            var orderedPets = service.OrderedListOfPet("Cat", owners);
+            var orderedPets = service.OrderedListOfPet(PetType.Cat, owners);
             DisplayList(orderedPets);
 
             System.Console.ReadLine();
@@ -28,7 +28,7 @@ namespace Agl.Console
 
         private static void DisplayList(List<OrderedPet> orderedPets)
         {
-            var lastGender = string.Empty;
+            var lastGender = GenderType.Undefined;
 
             foreach (var pet in orderedPets)
             {
@@ -36,7 +36,7 @@ namespace Agl.Console
                 {
                     lastGender = pet.OwnerGender;
                     System.Console.WriteLine("");
-                    System.Console.WriteLine($"{lastGender} owner");
+                    System.Console.WriteLine($"{lastGender.ToString()} owner");
                     System.Console.WriteLine("");
                 }
                 System.Console.WriteLine(pet.PetName);

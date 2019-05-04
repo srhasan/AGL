@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Agl.Console.Model
 {
-    public class OrderedPet
+    public enum GenderType
     {
-        public string PetName { get; set; }
-        public GenderType OwnerGender { get; set; }
+        Undefined = 0,
+        Male,
+        Female
     }
 }

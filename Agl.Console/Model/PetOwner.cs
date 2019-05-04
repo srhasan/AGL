@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Agl.Console.Model
 {
@@ -17,7 +18,9 @@ namespace Agl.Console.Model
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "gender")]
-        public string Gender { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))] 
+        // Custom enum converter was not used for test purpose. This requires 1 to 1 mapping and fail to deserialize if there is a mismatch
+        public GenderType Gender { get; set; }
 
         [JsonProperty(PropertyName = "age")]
         public int Age { get; set; }
@@ -32,7 +35,9 @@ namespace Agl.Console.Model
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        // Custom enum converter was not used for test purpose. This requires 1 to 1 mapping and fail to deserialize if there is a mismatch
+        public PetType Type { get; set; }
 
     }
 }

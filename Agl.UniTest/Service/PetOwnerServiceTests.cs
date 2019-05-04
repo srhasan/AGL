@@ -17,7 +17,7 @@ namespace Agl.Console.Service.Tests
         public void DisplayPetsGroupedByOwnerGender_NullList_Should_Pass()
         {
             var service = new PetOwnerService(null);
-            var result = service.OrderedListOfPet("cat", null);
+            var result = service.OrderedListOfPet(PetType.Cat, null);
             Assert.IsTrue(result != null);
         }
 
@@ -26,7 +26,7 @@ namespace Agl.Console.Service.Tests
         {
 
             var service = new PetOwnerService(null);
-            var result = service.OrderedListOfPet("cat", new List<PetOwner>());
+            var result = service.OrderedListOfPet(PetType.Cat, new List<PetOwner>());
             Assert.IsTrue(result != null);
         }
 
@@ -35,13 +35,13 @@ namespace Agl.Console.Service.Tests
         {
             var service = new PetOwnerService(null);
             var unsortedOwner = new List<PetOwner> {
-                new PetOwner { Age = 20, Gender = "Female", Name = "User1", Pets = new List<Pet> { new Pet {Name = "Scrappy", Type = "Cat" }, new Pet { Name = "Tom", Type = "Cat" } } },
-                new PetOwner { Age = 20, Gender = "Male", Name = "User2", Pets = new List<Pet> { new Pet {Name = "Tom", Type = "Cat" }, new Pet { Name = "Alfie", Type = "Cat" } } },
-                new PetOwner { Age = 22, Gender = "Female", Name = "User3", Pets = new List<Pet> { new Pet {Name = "Boa", Type = "Cat" }, new Pet { Name = "Polo", Type = "Dog" } } }
+                new PetOwner { Age = 20, Gender = GenderType.Female, Name = "User1", Pets = new List<Pet> { new Pet {Name = "Scrappy", Type = PetType.Cat }, new Pet { Name = "Tom", Type = PetType.Cat } } },
+                new PetOwner { Age = 20, Gender = GenderType.Male, Name = "User2", Pets = new List<Pet> { new Pet {Name = "Tom", Type = PetType.Cat }, new Pet { Name = "Alfie", Type = PetType.Cat } } },
+                new PetOwner { Age = 22, Gender = GenderType.Female, Name = "User3", Pets = new List<Pet> { new Pet {Name = "Boa", Type = PetType.Cat }, new Pet { Name = "Polo", Type = PetType.Dog } } }
             };
-            var result = service.OrderedListOfPet("cat", unsortedOwner);
+            var result = service.OrderedListOfPet(PetType.Cat, unsortedOwner);
             Assert.IsTrue(result.Count == 5);
-            Assert.IsTrue(result.First().PetName == "Boa");
+            Assert.IsTrue(result.First().PetName == "Alfie");
         }
 
         

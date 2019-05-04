@@ -6,6 +6,6 @@ namespace Agl.Console.Service
     public interface IPetOwnerService
     {
         List<PetOwner> GetPetOwner();
-        List<OrderedPet> OrderedListOfPet(string petType, List<PetOwner> owners);
+        List<OrderedPet> OrderedListOfPet(PetType petType, List<PetOwner> owners);
     }
 }
