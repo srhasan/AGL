@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Agl.Console.Model
+namespace Agl.Model
 {
     public enum PetType
     {

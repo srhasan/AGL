@@ -6,7 +6,7 @@
     <ProjectGuid>{F036CEFF-C59D-4DA5-8E37-40C4A2F15D6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agl.UniTest</RootNamespace>
+    <RootNamespace>Agl.UnitTest</RootNamespace>
     <AssemblyName>Agl.UniTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -55,9 +55,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Agl.Console\Agl.Console.csproj">
-      <Project>{BF098727-3E9D-4662-9B80-68430B91C925}</Project>
-      <Name>Agl.Console</Name>
+    <ProjectReference Include="..\Agl.Model\Agl.Model.csproj">
+      <Project>{a6dda5de-01a9-4c7c-ba3c-3f8feaf03d93}</Project>
+      <Name>Agl.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agl.Services\Agl.Services.csproj">
+      <Project>{ca27aea4-7aa4-4e0e-bb0e-a8be16e8004b}</Project>
+      <Name>Agl.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

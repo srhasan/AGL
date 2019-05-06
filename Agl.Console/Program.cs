@@ -1,12 +1,7 @@
-﻿using Agl.Console.Model;
-using Agl.Console.Service;
-using System;
+﻿using Agl.Model;
+using Agl.Services;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Agl.Console
 {
@@ -14,33 +9,35 @@ namespace Agl.Console
     {
         static void Main(string[] args)
         {
-            // As a simple demo no DI container is used here 
-            // but the code has been written in a way so that it will accept constructor injection 
-            var client = new WebClientService();           
+            /* 
+                As a simple demo no DI container is used here 
+                but the code has been written in a way so that it will accept constructor injection 
+                See Mvc.UI for an example of more realisting DI container
+            */
+            
+            var client = new WebClientService(ConfigurationManager.AppSettings["jsonUrl"]);           
             var service = new PetOwnerService(client);
 
             var owners = service.GetPetOwner();
-            var orderedPets = service.OrderedListOfPet(PetType.Cat, owners);
+            var orderedPets = service.GetGroupedAndSortedPetOwner(PetType.Cat, owners);
             DisplayList(orderedPets);
 
             System.Console.ReadLine();
         }
 
-        private static void DisplayList(List<OrderedPet> orderedPets)
-        {
-            var lastGender = GenderType.Undefined;
-
-            foreach (var pet in orderedPets)
+        private static void DisplayList(List<GroupedPetOwner> groupedPets)
+        {        
+            foreach (var groupedOwner in groupedPets)
             {
-                if (lastGender != pet.OwnerGender)
+                System.Console.WriteLine(groupedOwner.OwnerGender);
+                System.Console.WriteLine("");
+                foreach (var pet in groupedOwner.Pets)
                 {
-                    lastGender = pet.OwnerGender;
-                    System.Console.WriteLine("");
-                    System.Console.WriteLine($"{lastGender.ToString()} owner");
-                    System.Console.WriteLine("");
+                    System.Console.WriteLine(pet);
                 }
-                System.Console.WriteLine(pet.PetName);
+                System.Console.WriteLine("");
             }
+
         }
     }
 }

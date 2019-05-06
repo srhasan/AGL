@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Agl.Console.Service
+namespace Agl.Model
 {
-    public interface IWebClientService
+    public enum GenderType
     {
-        string GetPetOwnerJson();
+        Undefined = 0,
+        Male,
+        Female
     }
 }

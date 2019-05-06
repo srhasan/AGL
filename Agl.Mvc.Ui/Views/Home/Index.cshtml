@@ -1,0 +1,18 @@
+﻿@model Agl.Mvc.Ui.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var item in Model.PetOwners)
+{
+    <h3>@Html.DisplayFor(modelItem => item.OwnerGender)</h3>
+
+    <ul>
+        @foreach (var pet in item.Pets)
+        {
+            <li>@Html.DisplayFor(modelItem => pet)</li>
+        }        
+    </ul>
+}
+

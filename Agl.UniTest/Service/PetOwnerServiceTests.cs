@@ -1,11 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Agl.Console.Service;
-using System;
+﻿using Agl.Model;
+using Agl.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Agl.Console.Model;
 
 namespace Agl.Console.Service.Tests
 {
@@ -17,7 +14,7 @@ namespace Agl.Console.Service.Tests
         public void DisplayPetsGroupedByOwnerGender_NullList_Should_Pass()
         {
             var service = new PetOwnerService(null);
-            var result = service.OrderedListOfPet(PetType.Cat, null);
+            var result = service.GetGroupedAndSortedPetOwner(PetType.Cat, null);
             Assert.IsTrue(result != null);
         }
 
@@ -26,7 +23,7 @@ namespace Agl.Console.Service.Tests
         {
 
             var service = new PetOwnerService(null);
-            var result = service.OrderedListOfPet(PetType.Cat, new List<PetOwner>());
+            var result = service.GetGroupedAndSortedPetOwner(PetType.Cat, new List<PetOwner>());
             Assert.IsTrue(result != null);
         }
 
@@ -39,9 +36,9 @@ namespace Agl.Console.Service.Tests
                 new PetOwner { Age = 20, Gender = GenderType.Male, Name = "User2", Pets = new List<Pet> { new Pet {Name = "Tom", Type = PetType.Cat }, new Pet { Name = "Alfie", Type = PetType.Cat } } },
                 new PetOwner { Age = 22, Gender = GenderType.Female, Name = "User3", Pets = new List<Pet> { new Pet {Name = "Boa", Type = PetType.Cat }, new Pet { Name = "Polo", Type = PetType.Dog } } }
             };
-            var result = service.OrderedListOfPet(PetType.Cat, unsortedOwner);
-            Assert.IsTrue(result.Count == 5);
-            Assert.IsTrue(result.First().PetName == "Alfie");
+            var result = service.GetGroupedAndSortedPetOwner(PetType.Cat, unsortedOwner);
+            Assert.IsTrue(result.Count == 2);
+            Assert.IsTrue(result.First().Pets.First() == "Alfie");
         }
 
         

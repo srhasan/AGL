@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 
-namespace Agl.Console.Model
+namespace Agl.Model
 {
     public class PetOwner
     {
@@ -18,7 +14,7 @@ namespace Agl.Console.Model
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "gender")]
-        [JsonConverter(typeof(StringEnumConverter))] 
+        [JsonConverter(typeof(StringEnumConverter))]
         // Custom enum converter was not used for test purpose. This requires 1 to 1 mapping and fail to deserialize if there is a mismatch
         public GenderType Gender { get; set; }
 
@@ -27,17 +23,5 @@ namespace Agl.Console.Model
 
         [JsonProperty(PropertyName = "pets")]
         public List<Pet> Pets { get; set; }
-    }
-
-    public class Pet
-    {
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        // Custom enum converter was not used for test purpose. This requires 1 to 1 mapping and fail to deserialize if there is a mismatch
-        public PetType Type { get; set; }
-
     }
 }
