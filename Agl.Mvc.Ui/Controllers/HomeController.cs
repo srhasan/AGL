@@ -12,13 +12,11 @@ namespace Agl.Mvc.Ui.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly WebClientService _client;
-        private readonly PetOwnerService _petOwnerService;
+        private readonly IPetOwnerService _petOwnerService;
 
-        public HomeController()
+        public HomeController(IPetOwnerService petOwnerService)
         {
-            _client = new WebClientService(ConfigurationManager.AppSettings["jsonUrl"]);
-            _petOwnerService = new PetOwnerService(_client);
+            _petOwnerService = petOwnerService;
         }
 
         public ActionResult Index()
